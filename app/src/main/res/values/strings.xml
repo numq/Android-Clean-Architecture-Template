@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cards</string>
+    <string name="dialog_delete_item">DELETE ITEM?</string>
+    <string name="dialog_fields_should_be_filled">Fields should be filled!</string>
+    <string name="content_placeholder_image">PLACEHOLDER IMAGE</string>
+    <string name="content_no_data">NO DATA</string>
+    <string name="content_hint_front">FRONT</string>
+    <string name="content_hint_back">BACK</string>
+    <string name="content_button_add_new_card">Button Add New Card</string>
+</resources>
