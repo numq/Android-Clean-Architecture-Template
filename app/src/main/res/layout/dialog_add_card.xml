@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:gravity="center"
-        android:hint="@string/content_hint_front"
+        android:hint="@string/content_hint_back"
         android:textColor="@color/white" />
 
 </LinearLayout>
