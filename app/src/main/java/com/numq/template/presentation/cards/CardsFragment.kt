@@ -1,13 +1,10 @@
 package com.numq.template.presentation.cards
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.numq.template.R
+import com.numq.template.core.base.BaseFragment
 import com.numq.template.core.extension.*
 import com.numq.template.core.model.Card
 import com.numq.template.core.navigation.Router
@@ -23,21 +21,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class CardsFragment : Fragment() {
-
-    lateinit var binding: CardsFragmentBinding
+class CardsFragment : BaseFragment<CardsFragmentBinding>(CardsFragmentBinding::inflate) {
 
     private val cardsViewModel: CardsViewModel by lazy {
         ViewModelProvider(this.requireActivity()).get(CardsViewModel::class.java)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = CardsFragmentBinding.inflate(inflater)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -117,7 +104,8 @@ class CardsFragment : Fragment() {
                     }
                     cardsViewModel.insertCard(card).waitThen(wait, then)
                 } else {
-                    this.requireActivity().showToast(getString(R.string.dialog_fields_should_be_filled))
+                    this.requireActivity()
+                        .showToast(getString(R.string.dialog_fields_should_be_filled))
                 }
             }
         }.setPositiveButtonIcon(
