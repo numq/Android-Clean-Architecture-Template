@@ -1,9 +1,11 @@
 package com.numq.template.core.di
 
 import android.content.Context
+import androidx.room.Room
 import com.numq.template.BuildConfig
 import com.numq.template.core.constants.AppConstants
 import com.numq.template.data.AppDatabase
+import com.numq.template.data.cards.CardsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,21 +23,17 @@ object ApplicationModule {
 
     lateinit var database: AppDatabase
 
-//    @Provides
-//    @Singleton
-//    fun provideAppDatabase(@ApplicationContext context: Context) =
-//        Room.databaseBuilder(context, AppDatabase::class.java, "app-db").build()
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, AppDatabase::class.java, "app-db").build()
 
-//    @Provides
-//    @Singleton
-//    fun provideAppDatabase(@ApplicationContext context: Context) = AppDatabase.getInstance(context)
+    @Provides
+    fun provideCardsDao(db: AppDatabase) = db.cardsDao
 
     @Provides
     @Singleton
-    fun provideCardsDao(@ApplicationContext context: Context) = AppDatabase.getInstance(context).cardsDao
-
-//    @Provides
-//    fun provideCardsCache(dataSource: CardsRepository.Cache) = dataSource
+    fun provideCardsCache(dataSource: CardsRepository.Cache): CardsRepository = dataSource
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
@@ -56,9 +54,5 @@ object ApplicationModule {
             .addConverterFactory(JacksonConverterFactory.create())
             .build()
     }
-
-//        @Provides
-//        @Singleton
-//        fun provideCards(dataSource: CardsRepository.Network) = dataSource
 
 }
