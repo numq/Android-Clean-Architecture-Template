@@ -13,6 +13,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.numq.template.R
 import com.numq.template.core.base.BaseFragment
+import com.numq.template.core.constants.AppConstants
 import com.numq.template.core.extension.*
 import com.numq.template.core.model.Card
 import com.numq.template.core.navigation.Router
@@ -43,8 +44,8 @@ class CardsFragment : BaseFragment<CardsFragmentBinding>(CardsFragmentBinding::i
 
         cardsAdapter.onClick = { _, card ->
             navController.navigate(
-                Router.HOME_TO_DETAIL,
-                bundleOf(Router.HOME_TO_DETAIL.toString() to card)
+                Router.CARDS_TO_DETAIL,
+                bundleOf(AppConstants.ARGUMENT_CARD to card)
             )
         }
 

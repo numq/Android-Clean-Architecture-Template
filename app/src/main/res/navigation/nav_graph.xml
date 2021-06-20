@@ -18,5 +18,9 @@
         android:id="@+id/detailFragment"
         android:name="com.numq.template.presentation.detail.DetailFragment"
         android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        tools:layout="@layout/detail_fragment" >
+        <action
+            android:id="@+id/action_detailFragment_to_cardsFragment"
+            app:destination="@id/cardsFragment" />
+    </fragment>
 </navigation>
